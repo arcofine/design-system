@@ -1,6 +1,6 @@
 {
   "name": "@arcofine/design-system-sepaq",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": false,
   "dependencies": {
     "@progress/kendo-licensing": "^1.2.2",
@@ -33,12 +33,16 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "cross-env BABEL_ENV=production babel src -d dist",
+    "build1": "cross-env BABEL_ENV=production babel src -d dist",
+    "build": "react-scripts build -p jsconfig.json && yarn copy-files",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "release": "auto shipit --base-branch=main"
+    "release2": "auto shipit --base-branch=main",
+    "release": "standard-version && npm publish",
+    "copy-files": "copyfiles -u 1 \"src/**/*.css\" \"src/**/*.svg\" \"src/**/*.json\" lib/",
+    "prebuild": "rimraf lib"
   },
   "eslintConfig": {
     "extends": [
@@ -83,10 +87,12 @@
     "auto": "^10.37.6",
     "babel-plugin-named-exports-order": "^0.0.2",
     "chromatic": "^6.5.4",
+    "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "default-browser-id": "2.0.0",
     "prop-types": "^15.8.1",
+    "rimraf": "^3.0.2",
     "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.72.1"
