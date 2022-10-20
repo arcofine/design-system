@@ -1,4 +1,4 @@
-# v0.1.0 (Thu Oct 20 2022)
+# v0.1.1 (Thu Oct 20 2022)
 
 - Created first version of the design system, with KendoUI components.
 
