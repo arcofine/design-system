@@ -92,7 +92,7 @@
   },
   "description": "Design system basé sur la solution Storybook",
   "main": "index.js",
-  "repository": "https://sepaqri@dev.azure.com/sepaqri/interface-web-client/_git/design-system-storybook-react",
+  "repository": "https://github.com/arcofine/design-system.git",
   "author": "arcofine <arcofine@outlook.com>",
   "license": "MIT"
 }
