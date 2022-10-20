@@ -1,0 +1,50 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+#👇Environment variables created for Chromatic
+variables:
+- group: chromatic-keys
+
+# Other configurations 
+
+# Pipeline stages
+stages:
+- stage: Test
+  displayName: Chromatic Testing
+  # Job list
+  jobs:
+  - job: Chromatic_Deploy
+    displayName: Install packages and publishes to Chromatic
+    variables:
+      # Sets scoped environment variable to cache packages
+      npm_config_cache: $(Pipeline.Workspace)/.npm 
+    # List of steps
+    steps:
+      #👇Installs and configures Node environment
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '12.x'
+      displayName: 'Install Node.js'  
+    - task: Cache@2
+      displayName: Install and cache packages
+      inputs:
+        key: 'npm | "$(Agent.OS)" | package-lock.json'
+        restoreKeys: |
+          npm | "$(Agent.OS)"
+        path: $(npm_config_cache)
+    - script: npm ci
+      condition: ne(variables.CACHE_RESTORED, 'true')
+      #👇 Adds Chromatic as a step
+    - task: CmdLine@2
+      displayName: Publish to Chromatic
+      inputs:
+        #👇Runs Chromatic
+        script: npx chromatic --project-token=${CHROMATIC_PROJECT_TOKEN}
