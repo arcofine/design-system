@@ -1,6 +1,6 @@
 ### `yarn install`
 Install all the dependencies to the project
-
+   
 ## Available Scripts
 
 In the project directory, you can run:
