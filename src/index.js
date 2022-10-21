@@ -7,8 +7,6 @@ import * as main from './styles/globals/main.scss';
 
 export { main };
 
-export * from './stories/button'
-export * from './stories/select'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
