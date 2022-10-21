@@ -1,6 +1,6 @@
 {
   "name": "@arcofine/design-system-sepaq",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "private": false,
   "dependencies": {
     "@progress/kendo-licensing": "^1.2.2",
@@ -41,8 +41,9 @@
     "build-storybook": "build-storybook -s public",
     "release2": "auto shipit --base-branch=main",
     "release": "standard-version && npm publish",
-    "copy-files": "copyfiles -u 1 \"src/**/*.css\" \"src/**/*.svg\" \"src/**/*.json\" lib/",
-    "prebuild": "rimraf lib"
+    "copy-files": "copyfiles -u 1 \"src/**/*.css\" \"src/**/*.svg\" \"src/**/*.json\" \"-e src/stories/**/*.stories.jsx\" \"src/stories/**/*.jsx\" \"src/styles/**\" lib/",
+    "prebuild": "rimraf lib",
+    "export-lib": "copyfiles -u 1 \"-e src/stories/**/*.stories.jsx\" \"src/stories/**/*.jsx\" \"src/styles/**\" dist/"
   },
   "eslintConfig": {
     "extends": [
@@ -98,7 +99,11 @@
     "webpack": "^5.72.1"
   },
   "description": "Design system basé sur la solution Storybook",
-  "main": "index.js",
+  "main": "./lib/main.js",
+  "module": "./lib/main.js",
+  "files": [
+    "lib"
+  ],
   "repository": "https://github.com/arcofine/design-system.git",
   "author": "arcofine <arcofine@outlook.com>",
   "license": "MIT"
