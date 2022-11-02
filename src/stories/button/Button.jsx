@@ -23,7 +23,7 @@ SButton.propTypes = {
   /**
    * What background color to use
    */
-  themeColor: PropTypes.string,
+  themeColor: PropTypes.oneOf(["null" , "error" , "inverse" , "base" , "success" , "dark" , "light" , "primary" , "secondary" , "tertiary" , "info" , "warning"]),
   /**
    * How large should the button be?
    */
